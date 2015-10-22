@@ -1,0 +1,23 @@
+extends layout
+block content
+    .container
+        +nav("日志服务器", "dropdown_menu")
+            +nav_item( "/" ) 主页
+            +nav_item( "/api", "active" ) 使用说明
+            +nav_item( "/about" ) 关于
+            +nav_item_dropdown( "#" )( label="下拉框演示")
+                +nav_item( "#" ) 纯属无聊，
+                +nav_item( "#" ) 为了演示
+                +nav_item( "#" ) 下拉框的效果。
+                +nav_divider
+                +nav_header 标题为原因
+                +nav_item( "#" ) 为了
+                +nav_item( "#" ) 代码的完整
+
+        .row
+            .col-md-4.col-sm-6.col-xs-12
+                +panel("调用说明") 需要采用 POST 方法对 "/api" 提交数据来完成调用。<br>调用数据采用 x-www-form-urlencoded 格式，包括两个栏位，分别为 app 和 msg。<br>其中 app 为应用的的名字，msg为保存的消息，消息中不需要包含时间数据，在提交后，会自动增加当前时间。
+            .col-md-4.col-sm-6.col-xs-12
+                +panel("调用测试命令") $ curl -d "app=myApp&msg=一些消息" http://127.0.0.1:8080/api'<br><br>$ cat ./logs/myApp/2015-10-20.log<br>2015-10-20 03:04:04 : 一些消息<br>2015-10-20 15:10:34 : 一些消息
+            .col-md-4.col-sm-6.col-xs-12
+                +panel("文件存储说明") 上传到服务器的文件按app的名称创建目录，以日期创建日志文件。<br>日志内容的每条记录最前面会自动加上当前日期和时间。<br>服务器采用异步保存，通过消息交换来保证效率，支持高并发访问。

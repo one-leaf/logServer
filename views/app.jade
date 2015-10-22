@@ -1,0 +1,30 @@
+extends layout
+block content
+   .container
+      +nav("日志服务器", "dropdown_menu")
+         +nav_item( "/", "active" ) 主页
+         +nav_item( "/api" ) 使用说明
+         +nav_item( "/about" ) 关于
+         +nav_item_dropdown( "#" )( label="下拉框演示")
+            +nav_item( "#" ) 纯属无聊，
+            +nav_item( "#" ) 为了演示
+            +nav_item( "#" ) 下拉框的效果。
+            +nav_divider
+            +nav_header 标题为原因
+            +nav_item( "#" ) 为了
+            +nav_item( "#" ) 代码的完整
+      .row
+         .col-md-4.col-sm-6.col-xs-12
+            +panel("应用列表")
+               +listGroup("links")
+                  - each app, index in apps
+                     +listItem("/app/" + app.name, app.active)
+                        +listHeading #{app.name}
+         .col-md-8.col-sm-12.col-xs-24
+            +panel("文件列表")
+               +listGroup("links")
+                  - each file, index in files
+                     +listItem("/app/" + currApp + "/" + file )
+                        +listHeading #{file}
+
+

@@ -1,0 +1,31 @@
+extends layout
+block content
+    .container
+        +nav("日志服务器", "dropdown_menu")
+            +nav_item( "/" ) 主页
+            +nav_item( "/api" ) 使用说明
+            +nav_item( "/about", "active") 关于
+            +nav_item_dropdown( "#" )( label="下拉框演示")
+                +nav_item( "#" ) 纯属无聊，
+                +nav_item( "#" ) 为了演示
+                +nav_item( "#" ) 下拉框的效果。
+                +nav_divider
+                +nav_header 标题为原因
+                +nav_item( "#" ) 为了
+                +nav_item( "#" ) 代码的完整
+        .row
+            .col-md-6.col-sm-6.col-xs-12
+                +panel("关于") 这个程序采用了如下：<br>
+                    | node.js <br>
+                    | express <br>
+                    | jade <br>
+                    | bootstrap <br>
+                    | jqurey <br>
+                    | 等各种牛逼技术。
+            .col-md-6.col-sm-6.col-xs-12
+                +panel("运行") 如何运行：<br>
+                    | 1. 安装环境 npm install<br>
+                    | 2. 运行 npm start <br>
+                    | 3. 访问 http://127.0.0.1:8080 <br>
+                    | 4. 配置文件位于程序主目录下的 settings.json <br>
+                    | <br>为了好看多写一句。<br>
