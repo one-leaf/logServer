@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var appRoutes = require('./routes/app');
 var apiRoutes = require('./routes/api');
 var aboutRoutes = require('./routes/about');
+var mkdirp = require('mkdirp');
 
 var app = express();
 
@@ -70,7 +71,10 @@ try {
   console.log(ex.stack);
 }
 
+var logPath=path.join(__dirname, configs.logPath||'logs');
+mkdirp(logPath);
+
 app.set('port',configs.port);
-app.set('logPath',path.join(__dirname, configs.logPath||'logs'));
+app.set('logPath',logPath);
 
 module.exports = app;
